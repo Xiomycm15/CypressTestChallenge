@@ -1,0 +1,51 @@
+[
+  {
+    "keyword": "Feature",
+    "name": "Visit Details Page",
+    "line": 1,
+    "id": "visit-details-page",
+    "tags": [],
+    "uri": "e2eTestScenarios.feature",
+    "elements": [
+      {
+        "id": "visit-details-page;'asuccessful-purchase-of-a-property--'",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "'ASuccessful Purchase Of A Property  '",
+        "tags": [
+          {
+            "name": "@GM",
+            "line": 2
+          },
+          {
+            "name": "@AA",
+            "line": 2
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "the user logins with valid credentials",
+            "result": {
+              "status": "passed",
+              "duration": 41703000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "the user starts a new application with following code \"12871\"",
+            "result": {
+              "status": "passed",
+              "duration": 2623000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
