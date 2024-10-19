@@ -23,3 +23,21 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import './commands'
+
+beforeEach(()=> {
+
+    Cypress.on('uncaught:exception',()=> {
+       return false;
+  
+  })
+    cy.intercept('https://tenantev-qa.tev2.co/').as('todos')
+    cy.visit('https://tenantev-qa.tev2.co/',{
+      headers:{
+      }
+    });
+    cy.wait('@todos')
+    // page is loaded, continue with the test
+  
+  })

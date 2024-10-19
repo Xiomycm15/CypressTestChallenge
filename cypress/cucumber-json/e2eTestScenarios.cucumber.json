@@ -10,7 +10,7 @@
       {
         "id": "visit-details-page;'asuccessful-purchase-of-a-property--'",
         "keyword": "Scenario",
-        "line": 9,
+        "line": 13,
         "name": "'ASuccessful Purchase Of A Property  '",
         "tags": [
           {
@@ -31,17 +31,58 @@
             "name": "the user logins with valid credentials",
             "result": {
               "status": "passed",
-              "duration": 41703000000
+              "duration": 31848000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "ther user submits application for multiple customers with \"12871\" property code",
+            "result": {
+              "status": "passed",
+              "duration": 104813000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 6,
-            "name": "the user starts a new application with following code \"12871\"",
+            "line": 7,
+            "name": "the user fills all of the mandatory fields",
             "result": {
               "status": "passed",
-              "duration": 2623000000
+              "duration": 32278000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "there are \"2\" occupants under the age of 18",
+            "result": {
+              "status": "passed",
+              "duration": 5243000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 9,
+            "name": "\"2\" vehicles will be kept at the property",
+            "result": {
+              "status": "passed",
+              "duration": 12018000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 10,
+            "name": "\"3\" pets will be kept at the property",
+            "result": {
+              "status": "failed",
+              "duration": 4821000000,
+              "error_message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `tev-pet-form tev-yes-no-input [data-cy=\"yes\"]0`, but never found it.\n    at Object.isThisPetEmotionalSupportYesCheckbox (cypress/e2e/PageObjects/additional-info-page.js:39:56)\n    at additionalInfoPage.clickOnIsThisPetEmotionalSupportYesCheckbox (cypress/e2e/PageObjects/additional-info-page.js:155:22)\n    at Context.eval (cypress/e2e/StepsDefinition/e2eCompleteApplicationSteps.js:185:25)\n    at Context.resolveAndRunStepDefinition (node_modules/cypress-cucumber-preprocessor/lib/resolveStepDefinition.js:193:0)\n    at Context.eval (node_modules/cypress-cucumber-preprocessor/lib/createTestFromScenario.js:27:0)"
             }
           }
         ]
