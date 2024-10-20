@@ -8,6 +8,7 @@ import documentationAndConditionsPage from "../PageObjects/documentation-and-con
 import loginPage from "../PageObjects/login-page"
 import personalInfoPage from "../PageObjects/personal-info-page";
 import referencesPage from "../PageObjects/references-page";
+import reviewInfoPage from "../PageObjects/review-info-page";
 import whoIsBuyingPage from "../PageObjects/who-is-buying-page";
 
 
@@ -37,7 +38,7 @@ When('ther user submits application for multiple customers with {string} propert
   whoIsBuyingPage.clickOnMeAndSomeoneElseSelectButton()
   documentationAndConditionsPage.clickOnIHaveReadCheckbox()
   documentationAndConditionsPage.clickOnAgreeAndApplyButton()
-  cy.wait(80000)
+  cy.wait(8000)
   addressDetailsPage.clickOnConfirmApplicationYesButton()
 
 });
@@ -48,7 +49,7 @@ And('the user fills all of the mandatory fields', () => {
   addressDetailsPage.typeEnterUnitNumber('2')
   addressDetailsPage.typeCity('Florida')
   addressDetailsPage.typeZipCode('33912')
-  addressDetailsPage.clickOnDateCalendar('2024','OCT','19')
+  addressDetailsPage.clickOnDateCalendar('2024','OCT','22')
 
 
   addressDetailsPage.typePurchasePrice('400000')
@@ -184,15 +185,41 @@ And('{string} pets will be kept at the property', (petsQuantity) => {
       }   
       additionalInfoPage.clickOnIsThisPetEmotionalSupportYesCheckbox(i) 
       additionalInfoPage.typePetNameInput(i,'test')
-      additionalInfoPage.selectPetTypeDropdown('Dog')
+      additionalInfoPage.selectPetTypeDropdown(i,'Dog')
       additionalInfoPage.typePetBreedInput(i,'test')
       additionalInfoPage.typePetAgeInput(i,'10')
       additionalInfoPage.typePetWeightInput(i,'10')
-      additionalInfoPage.selectPetSexDropdown('Male')
+      additionalInfoPage.selectPetSexDropdown(i,'Male')
       additionalInfoPage.typePetDescriptionTextInput(i,'test')
 
     }
 
   }
 
+  additionalInfoPage.clickOnSaveAndContinue()
+  reviewInfoPage.informationSavedTextValidation()
+  reviewInfoPage.clickOnSaveAndContinueButton()
+
 });
+
+
+And('the user complete purchase with valid payment details', () => {
+
+  paymentDetailsPage.informationSavedTextValidation()
+  paymentDetailsPage.clickOnAddPlatinumServiceNowButton()
+  paymentDetailsPage.typeCardNameInput('test')
+  paymentDetailsPage.typeCardNameInput('test')
+  paymentDetailsPage.typeCardCityInput('test')
+  paymentDetailsPage.selectCardStateDropdown('FLORIDA')
+  paymentDetailsPage.typeCardZipCodeInput('32003')
+  paymentDetailsPage.typeCardNumber('4111111111111111')
+  paymentDetailsPage.typeExpirationDateInput('12/30')
+  paymentDetailsPage.typeCVVCardInput('111')
+  paymentDetailsPage.typePostalCodeInput('33333')
+  paymentDetailsPage.typeSignatureInput('Test')
+  paymentDetailsPage.clickOnSelectSignatureButton()
+  paymentDetailsPage.clickOnIAgreeAndAuthorizeChargeCheckbox()
+  paymentDetailsPage.clickOnPayButton()
+
+});
+

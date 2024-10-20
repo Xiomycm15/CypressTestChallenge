@@ -35,15 +35,15 @@ class additionalInfoPage{
 
         willThereBeAnyPetsNoCheckbox: () =>  cy.get('tev-pet-info tev-yes-no-input [value="yes"]').eq(1),
         willThereBeAnyPetsYesCheckbox: () =>  cy.get('tev-pet-info tev-yes-no-input [value="yes"]').eq(0),
-        isThisPetEmotionalSupportNoCheckbox: () =>  cy.get('tev-pet-form tev-yes-no-input [data-cy="no"]'+this.countPetsNoCheckbox),
-        isThisPetEmotionalSupportYesCheckbox: () =>  cy.get('tev-pet-form tev-yes-no-input [data-cy="yes"]'+this.countPetsYesCheckbox),
+        isThisPetEmotionalSupportNoCheckbox: () =>  cy.get('tev-pet-form tev-yes-no-input [data-cy="no"]').eq(this.countPetsNoCheckbox),
+        isThisPetEmotionalSupportYesCheckbox: () =>  cy.get('tev-pet-form tev-yes-no-input [data-cy="yes"]').eq(this.countPetsYesCheckbox),
 
         petNameInput: () =>  cy.get('#petName-'+this.countPets),
         petTypeDropdown: () =>  cy.get('tev-pet-form mat-select').eq(this.countPets),
         petBreedInput: () =>  cy.get('#petBreed-'+this.countPets),
         petAgeInput: () =>  cy.get('#petAge-'+this.countPets),
         petWeightInput: () =>  cy.get('#petWeight-'+this.countPets),
-        petSexDropdown : () =>  cy.get('#mat-select-value-93').eq(this.countPets),
+        petSexDropdown : () =>  cy.get('tev-pet-form mat-select').eq(this.countPets),
         petDescriptionTextInput: () =>  cy.get('#petDescription-'+this.countPets),
 
         addAnotherPetButton: () =>  cy.get('button').contains('Add another Pet'),
@@ -161,10 +161,10 @@ class additionalInfoPage{
     }
 
     selectPetTypeDropdown(petNo,value){
-        this.countPets=petNo
+        this.countPets=petNo*2
         this.elements.petTypeDropdown().click({force:true});
         this.elements.valueDropdown().contains(value).click({force:true})
-        this.countPets=this.countPets+1
+
     }
 
     typePetBreedInput(petNo, petBreed){
@@ -184,11 +184,9 @@ class additionalInfoPage{
     }
 
     selectPetSexDropdown(petNo,value){
-        this.countPets=petNo
+        this.countPets=(2*petNo)+1
         this.elements.petSexDropdown().click({force:true});
         this.elements.valueDropdown().contains(value).click({force:true})
-        this.countPets=this.countPets+2
-
     }
 
     typePetDescriptionTextInput(petNo, petDescription){
@@ -198,6 +196,10 @@ class additionalInfoPage{
 
     clickOnAddAnotherPetButton(){
         this.elements.addAnotherPetButton().click({force:true})
+    }
+
+    clickOnSaveAndContinue(){
+        this.elements.saveAndContinueButton().click({force:true})
     }
 }
 
