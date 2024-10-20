@@ -15,17 +15,13 @@ class paymentDetailsPage{
         
         cardZipCodeInput: () =>  cy.get('#paymentZipCode'), 
         
-        cardNumberInput : () =>  cy.get('#cardNumber'), 
-        expirationDateInput: () =>  cy.get('#expirationDate'), 
-        cvvCardInput: () =>  cy.get('#cvv'), 
-        postalCodeInput : () =>  cy.get('#postalCode'), 
 
         signatureInput : () =>  cy.get('.signature-input'), 
         
         selectSignatureButton : () =>  cy.get('button').contains('Select signature style'), 
         
         
-        iAgreeAndAuthorizeChargeCheckbox: () =>  cy.get('#agree'), 
+        iAgreeAndAuthorizeChargeCheckbox: () =>  cy.get('#agree-input'), 
 
         
         payButton: () =>  cy.get('[data-cy="buttonPay"]'), 
@@ -49,7 +45,7 @@ class paymentDetailsPage{
     }
 
 
-    typeCardNameInput(cardStreet){
+    typeCardStreetInput(cardStreet){
         this.elements.cardStreetInput().type(cardStreet);
     }
 
@@ -63,27 +59,22 @@ class paymentDetailsPage{
     }
 
     typeCardZipCodeInput(cardZipCode){
-        this.elements.cardCityInput().type(cardZipCode);
+        this.elements.cardZipCodeInput().type(cardZipCode);
     }
 
-    typeCardNumber(cardNumber){
-        this.elements.cardCityInput().type(cardNumber);
-    }
+    typeCardDetails(cardNumber,expirationDate,cvvCard,postalCode){
+        cy.get('.sq-card-component').then($iframe => {
+            const $body = $iframe.contents().find('body')           
+            cy.wrap($body).find('#cardNumber').type(cardNumber)
+            cy.wrap($body).find('#expirationDate').type(expirationDate)
+            cy.wrap($body).find('#cvv').type(cvvCard)
+            cy.wrap($body).find('#postalCode').type(postalCode)
+          })
 
-    typeExpirationDateInput(expirationDate){
-        this.elements.expirationDateInput().type(expirationDate);
-    }
-
-    typeCVVCardInput(cvvCardInput){
-        this.elements.cvvCardInput().type(cvvCardInput);
-    }
-
-    typePostalCodeInput(postalCodeInput){
-        this.elements.cvvCardInput().type(postalCodeInput);
     }
 
     typeSignatureInput(signatureName){
-        this.elements.cvvCardInput().type(signatureName);
+        this.elements.signatureInput().type(signatureName);
     }
 
     clickOnSelectSignatureButton(){
@@ -91,7 +82,7 @@ class paymentDetailsPage{
     }
 
     clickOnIAgreeAndAuthorizeChargeCheckbox(){
-        this.elements.iAgreeAndAuthorizeChargeCheckbox().click({force:true})
+        this.elements.iAgreeAndAuthorizeChargeCheckbox().click({force: true})
     }
     
     clickOnPayButton(){

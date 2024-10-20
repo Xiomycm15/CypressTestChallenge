@@ -10,7 +10,8 @@ import personalInfoPage from "../PageObjects/personal-info-page";
 import referencesPage from "../PageObjects/references-page";
 import reviewInfoPage from "../PageObjects/review-info-page";
 import whoIsBuyingPage from "../PageObjects/who-is-buying-page";
-
+import paymentDetailsPage from "../PageObjects/payment-details-page";
+import successVideoPage from "../PageObjects/success-video-page";
 
 
 Given('the user logins with valid credentials', () => {
@@ -72,7 +73,7 @@ And('the user fills all of the mandatory fields', () => {
   personalInfoPage.typeApplicantLastName('Doe')
   personalInfoPage.clickOnApplicantDateOfBirth('1988','OCT','17')
   personalInfoPage.typeApplicantMobileNumber('1234567890')
-  personalInfoPage.typeApplicantSSN('0123456789')
+  personalInfoPage.typeApplicantSSN('0124113376')
   //personalInfoPage.clickOnIAgreeReceiveTextMessageCheckbox()
   personalInfoPage.selectcoApplicantRelationship()
 
@@ -80,8 +81,8 @@ And('the user fills all of the mandatory fields', () => {
   personalInfoPage.typecoApplicantLastName('Smith')
   personalInfoPage.typecoApplicantEmail('test@gmail.com')
   personalInfoPage.clickOncoApplicantDateOfBirth('1988','2','20')
-  personalInfoPage.typecoApplicantMobileNumber('1234567890')
-  personalInfoPage.typecoApplicantSSN('0098765432')
+  personalInfoPage.typecoApplicantMobileNumber('1294567890')
+  personalInfoPage.typecoApplicantSSN('0036741442')
 
   personalInfoPage.clickOnIsPrimaryOrSecondaryApplicantDutyMilitaryNoCheckBox()
   personalInfoPage.clickOnHasApplicantBeenArrestedNoCheckbox()
@@ -205,17 +206,13 @@ And('{string} pets will be kept at the property', (petsQuantity) => {
 
 And('the user complete purchase with valid payment details', () => {
 
-  paymentDetailsPage.informationSavedTextValidation()
   paymentDetailsPage.clickOnAddPlatinumServiceNowButton()
   paymentDetailsPage.typeCardNameInput('test')
-  paymentDetailsPage.typeCardNameInput('test')
+  paymentDetailsPage.typeCardStreetInput('test')
   paymentDetailsPage.typeCardCityInput('test')
   paymentDetailsPage.selectCardStateDropdown('FLORIDA')
   paymentDetailsPage.typeCardZipCodeInput('32003')
-  paymentDetailsPage.typeCardNumber('4111111111111111')
-  paymentDetailsPage.typeExpirationDateInput('12/30')
-  paymentDetailsPage.typeCVVCardInput('111')
-  paymentDetailsPage.typePostalCodeInput('33333')
+  paymentDetailsPage.typeCardDetails('4111111111111111','12/30','111','33333')
   paymentDetailsPage.typeSignatureInput('Test')
   paymentDetailsPage.clickOnSelectSignatureButton()
   paymentDetailsPage.clickOnIAgreeAndAuthorizeChargeCheckbox()
@@ -223,3 +220,9 @@ And('the user complete purchase with valid payment details', () => {
 
 });
 
+Then('the purchase should be successfully completed', () => {
+    cy.wait(4000)
+    successVideoPage.successPaymentTextValidation()
+
+
+});

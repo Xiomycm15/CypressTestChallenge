@@ -10,7 +10,7 @@
       {
         "id": "visit-details-page;'asuccessful-purchase-of-a-property--'",
         "keyword": "Scenario",
-        "line": 13,
+        "line": 15,
         "name": "'ASuccessful Purchase Of A Property  '",
         "tags": [
           {
@@ -31,7 +31,7 @@
             "name": "the user logins with valid credentials",
             "result": {
               "status": "passed",
-              "duration": 7796000000
+              "duration": 5887000000
             }
           },
           {
@@ -41,7 +41,7 @@
             "name": "ther user submits application for multiple customers with \"12871\" property code",
             "result": {
               "status": "passed",
-              "duration": 17193000000
+              "duration": 11710000000
             }
           },
           {
@@ -51,7 +51,7 @@
             "name": "the user fills all of the mandatory fields",
             "result": {
               "status": "passed",
-              "duration": 15006000000
+              "duration": 14418000000
             }
           },
           {
@@ -61,7 +61,7 @@
             "name": "there are \"2\" occupants under the age of 18",
             "result": {
               "status": "passed",
-              "duration": 1618000000
+              "duration": 1613000000
             }
           },
           {
@@ -71,7 +71,7 @@
             "name": "\"2\" vehicles will be kept at the property",
             "result": {
               "status": "passed",
-              "duration": 3127000000
+              "duration": 3129000000
             }
           },
           {
@@ -81,7 +81,27 @@
             "name": "\"3\" pets will be kept at the property",
             "result": {
               "status": "passed",
-              "duration": 5503000000
+              "duration": 5496000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 11,
+            "name": "the user complete purchase with valid payment details",
+            "result": {
+              "status": "passed",
+              "duration": 2924000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "the purchase should be successfully completed",
+            "result": {
+              "status": "passed",
+              "duration": 4456000000
             }
           }
         ]
