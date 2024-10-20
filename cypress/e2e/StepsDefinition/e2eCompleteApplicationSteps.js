@@ -12,6 +12,9 @@ import reviewInfoPage from "../PageObjects/review-info-page";
 import whoIsBuyingPage from "../PageObjects/who-is-buying-page";
 import paymentDetailsPage from "../PageObjects/payment-details-page";
 import successVideoPage from "../PageObjects/success-video-page";
+import profileSuccessDashboardPage from "../PageObjects/profile-success-dashboard-page";
+import signInRulesPage from "../PageObjects/signIn-rules-page";
+import signatureInAppPage from "../PageObjects/signature-in-app-page";
 
 
 Given('the user logins with valid credentials', () => {
@@ -39,13 +42,18 @@ When('ther user submits application for multiple customers with {string} propert
   whoIsBuyingPage.clickOnMeAndSomeoneElseSelectButton()
   documentationAndConditionsPage.clickOnIHaveReadCheckbox()
   documentationAndConditionsPage.clickOnAgreeAndApplyButton()
-  cy.wait(8000)
+  cy.wait(30000)
   addressDetailsPage.clickOnConfirmApplicationYesButton()
 
 });
 
 
 And('the user fills all of the mandatory fields', () => {
+
+  function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min) ) + min;
+  }
+
   addressDetailsPage.typePropertyAddress('921 West Ann Street Fort Myers')
   addressDetailsPage.typeEnterUnitNumber('2')
   addressDetailsPage.typeCity('Florida')
@@ -63,7 +71,7 @@ And('the user fills all of the mandatory fields', () => {
   addressDetailsPage.clickOnIsTheApplicantWorkingWithRealYesCheckbox()
   addressDetailsPage.typeAgentName("Test")
   addressDetailsPage.typeAgentEmail("test2@gmail.com")
-  addressDetailsPage.typeAgentMobileNumber('1234567890')
+  addressDetailsPage.typeAgentMobileNumber('1214537890')
 
   addressDetailsPage.clickOnIAgreeAgentMayReceiveNotificationCheckbox()
   addressDetailsPage.clickOnSaveAndContinueButton()
@@ -73,7 +81,8 @@ And('the user fills all of the mandatory fields', () => {
   personalInfoPage.typeApplicantLastName('Doe')
   personalInfoPage.clickOnApplicantDateOfBirth('1988','OCT','17')
   personalInfoPage.typeApplicantMobileNumber('1234567890')
-  personalInfoPage.typeApplicantSSN('0124113376')
+  let applicantSSN=getRndInteger(100000000, 999999999)
+  personalInfoPage.typeApplicantSSN(applicantSSN)
   //personalInfoPage.clickOnIAgreeReceiveTextMessageCheckbox()
   personalInfoPage.selectcoApplicantRelationship()
 
@@ -82,7 +91,8 @@ And('the user fills all of the mandatory fields', () => {
   personalInfoPage.typecoApplicantEmail('test@gmail.com')
   personalInfoPage.clickOncoApplicantDateOfBirth('1988','2','20')
   personalInfoPage.typecoApplicantMobileNumber('1294567890')
-  personalInfoPage.typecoApplicantSSN('0036741442')
+  let coApplicantSSN=getRndInteger(100000000, 999999999)
+  personalInfoPage.typecoApplicantSSN(coApplicantSSN)
 
   personalInfoPage.clickOnIsPrimaryOrSecondaryApplicantDutyMilitaryNoCheckBox()
   personalInfoPage.clickOnHasApplicantBeenArrestedNoCheckbox()
@@ -223,6 +233,27 @@ And('the user complete purchase with valid payment details', () => {
 Then('the purchase should be successfully completed', () => {
     cy.wait(4000)
     successVideoPage.successPaymentTextValidation()
+    cy.wait(4000)
+    cy.url().then((url) => {
+      cy.log('Current URL is: ' + url)
+      cy.visit(url+'-dashboard')
+    })
+    
+    profileSuccessDashboardPage.transactionProcessedTextValidation()
+    profileSuccessDashboardPage.transactionThankYouTextValidation()
+    profileSuccessDashboardPage.applicationFormCompletedTextValidation()
+    //profileSuccessDashboardPage.clickOnDownloadACopyButton()
+    profileSuccessDashboardPage.clickOnSignRulesAndRegulationsNowButton()
+    cy.wait(30000)
+    profileSuccessDashboardPage.clickOnSignRulesAndRegulationsNowButton2()
+    cy.wait(20000)
 
+    signatureInAppPage.clickOnElectronicSignatureAgreeButton()
+    //signatureInAppPage.typeSignatureInput('test')
+    signatureInAppPage.clickOnSignButton()
+    signatureInAppPage.clickOnClickToInitialButton()
+    signatureInAppPage.clickOnClickToSignInButton()
+    signatureInAppPage.clickOnFinishButton()
+    signatureInAppPage.signatureProcessCompleteTextValidation()
 
 });

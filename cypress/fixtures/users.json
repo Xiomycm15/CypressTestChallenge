@@ -1,0 +1,7 @@
+[ {    "email": "jeimmy.camacho@pumpkin.care",    "password": "Sakura.1994@"}, 
+  {    "email": "jeimmy.camacho+a1@pumpkin.care",    "password": "Sakura.1994@",    "type": "Standard Pet"  }, 
+  {    "email": "jeimmy.camacho+a2@pumpkin.care",    "password": "Sakura.1994@",    "type": "Pet with PEP"   },  
+  {    "email": "jeimmy.camacho+a3@pumpkin.care",    "password": "Sakura.1994@",     "type": "Pet with existing preconditions"},
+  {    "email": "jeimmy.camacho+a4@pumpkin.care",    "password": "Sakura.1994@",     "type": "Pet deceased"   },
+  {    "email": "jeimmy.camacho+4@pumpkin.care",    "password": "Sakura.1994@",    "type": "Pet deceased with PEP"   },
+  {    "email": "jeimmy.camacho+a5@pumpkin.care",    "password": "Sakura.1994@",    "type": "Pet with existing preconditions" }]

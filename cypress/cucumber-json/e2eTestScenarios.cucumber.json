@@ -31,7 +31,7 @@
             "name": "the user logins with valid credentials",
             "result": {
               "status": "passed",
-              "duration": 5887000000
+              "duration": 17572000000
             }
           },
           {
@@ -41,7 +41,7 @@
             "name": "ther user submits application for multiple customers with \"12871\" property code",
             "result": {
               "status": "passed",
-              "duration": 11710000000
+              "duration": 39940000000
             }
           },
           {
@@ -51,7 +51,7 @@
             "name": "the user fills all of the mandatory fields",
             "result": {
               "status": "passed",
-              "duration": 14418000000
+              "duration": 14284000000
             }
           },
           {
@@ -61,7 +61,7 @@
             "name": "there are \"2\" occupants under the age of 18",
             "result": {
               "status": "passed",
-              "duration": 1613000000
+              "duration": 1600000000
             }
           },
           {
@@ -71,7 +71,7 @@
             "name": "\"2\" vehicles will be kept at the property",
             "result": {
               "status": "passed",
-              "duration": 3129000000
+              "duration": 3140000000
             }
           },
           {
@@ -81,7 +81,7 @@
             "name": "\"3\" pets will be kept at the property",
             "result": {
               "status": "passed",
-              "duration": 5496000000
+              "duration": 5551000000
             }
           },
           {
@@ -91,7 +91,7 @@
             "name": "the user complete purchase with valid payment details",
             "result": {
               "status": "passed",
-              "duration": 2924000000
+              "duration": 2827000000
             }
           },
           {
@@ -101,7 +101,7 @@
             "name": "the purchase should be successfully completed",
             "result": {
               "status": "passed",
-              "duration": 4456000000
+              "duration": 71689000000
             }
           }
         ]
