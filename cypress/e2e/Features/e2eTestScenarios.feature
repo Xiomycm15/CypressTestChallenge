@@ -14,4 +14,3 @@ Feature: Techincal test tenantev
     | propertyCode | childrenQuantity | vehicleQuantity | petsQuantity |
     | 12871        | 2                | 2               |        3     |
     | 12850        | 0                | 1               |        2     |
-

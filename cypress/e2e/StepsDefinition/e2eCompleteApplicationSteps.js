@@ -40,7 +40,7 @@ Given('the user logins with valid credentials', () => {
 
 When('ther user submits application for multiple customers with {string} property code', (code) => {
   cy.fixture('users').then(user => {
-    cy.wait(50000)
+    cy.wait(3000)
 
   communityHomePage.clickOnStartNewApplicationSelectButton()
   communityEnterCodePage.enterPropertyCodeTextValidation()
@@ -56,7 +56,7 @@ When('ther user submits application for multiple customers with {string} propert
   whoIsBuyingPage.clickOnMeAndSomeoneElseSelectButton()
   documentationAndConditionsPage.clickOnIHaveReadCheckbox()
   documentationAndConditionsPage.clickOnAgreeAndApplyButton()
-  cy.wait(80000)
+  cy.wait(40000)
   addressDetailsPage.clickOnConfirmApplicationYesButton()
 });
 
@@ -263,8 +263,8 @@ And('{string} pets will be kept at the property for code {string}', (petsQuantit
   }else if(petsQuantity>0){
     additionalInfoPage.clickOnWillThereBeAnyPetsYesCheckbox()
     for (var i = 0; i <petsQuantity ; i++) {
-      if(i!=0 && i<3){
-        additionalInfoPage.clickOnAddAnotherPetButton()
+      if(i!=0){
+        additionalInfoPage.clickOnAddAnotherPetButton(i-1)
       }   
 
       if(code=='12871'){

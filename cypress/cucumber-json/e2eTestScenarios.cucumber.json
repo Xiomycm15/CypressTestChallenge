@@ -31,7 +31,7 @@
             "name": "the user logins with valid credentials",
             "result": {
               "status": "passed",
-              "duration": 14642000000
+              "duration": 5216000000
             }
           },
           {
@@ -41,7 +41,7 @@
             "name": "ther user submits application for multiple customers with \"12871\" property code",
             "result": {
               "status": "passed",
-              "duration": 208893000000
+              "duration": 47232000000
             }
           },
           {
@@ -51,7 +51,7 @@
             "name": "the user fills all of the mandatory fields for code \"12871\"",
             "result": {
               "status": "passed",
-              "duration": 15276000000
+              "duration": 14689000000
             }
           },
           {
@@ -61,7 +61,7 @@
             "name": "there are \"2\" occupants under the age of 18",
             "result": {
               "status": "passed",
-              "duration": 1717000000
+              "duration": 1561000000
             }
           },
           {
@@ -71,7 +71,7 @@
             "name": "\"2\" vehicles will be kept at the property",
             "result": {
               "status": "passed",
-              "duration": 3315000000
+              "duration": 2935000000
             }
           },
           {
@@ -80,9 +80,8 @@
             "line": 10,
             "name": "\"3\" pets will be kept at the property for code \"12871\"",
             "result": {
-              "status": "failed",
-              "duration": 2945000000,
-              "error_message": "CypressError: `cy.click()` can only be called on a single element. Your subject contained 2 elements. Pass `{ multiple: true }` if you want to serially click each element.\n    at mouseAction (https://tenantev-qa.tev2.co/__cypress/runner/cypress_runner.js:141803:76)\n    at Context.click (https://tenantev-qa.tev2.co/__cypress/runner/cypress_runner.js:141967:14)\n    at wrapped (https://tenantev-qa.tev2.co/__cypress/runner/cypress_runner.js:160816:19)\nFrom Your Spec Code:\n    at additionalInfoPage.clickOnAddAnotherPetButton (cypress/e2e/PageObjects/additional-info-page.js:199:44)\n    at Context.eval (cypress/e2e/StepsDefinition/e2eCompleteApplicationSteps.js:267:27)"
+              "status": "passed",
+              "duration": 4824000000
             }
           },
           {
@@ -91,7 +90,8 @@
             "line": 11,
             "name": "the user complete purchase with valid payment details",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 3044000000
             }
           },
           {
@@ -100,7 +100,8 @@
             "line": 12,
             "name": "the purchase should be successfully completed",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 64715000000
             }
           }
         ]
@@ -129,7 +130,7 @@
             "name": "the user logins with valid credentials",
             "result": {
               "status": "passed",
-              "duration": 117095000000
+              "duration": 3865000000
             }
           },
           {
@@ -138,8 +139,8 @@
             "line": 6,
             "name": "ther user submits application for multiple customers with \"12850\" property code",
             "result": {
-              "status": "failed",
-              "error_message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.confirm-button`, but never found it.\n    at Object.confirmApplicationYesButton (cypress/e2e/PageObjects/address-details-page.js:6:47)\n    at addressDetailsPage.clickOnConfirmApplicationYesButton (cypress/e2e/PageObjects/address-details-page.js:30:22)\n    at Context.eval (cypress/e2e/StepsDefinition/e2eCompleteApplicationSteps.js:60:21)"
+              "status": "passed",
+              "duration": 46749000000
             }
           },
           {
@@ -148,7 +149,8 @@
             "line": 7,
             "name": "the user fills all of the mandatory fields for code \"12850\"",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 12933000000
             }
           },
           {
@@ -157,7 +159,8 @@
             "line": 8,
             "name": "there are \"0\" occupants under the age of 18",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 331000000
             }
           },
           {
@@ -166,7 +169,8 @@
             "line": 9,
             "name": "\"1\" vehicles will be kept at the property",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 1454000000
             }
           },
           {
@@ -175,7 +179,8 @@
             "line": 10,
             "name": "\"2\" pets will be kept at the property for code \"12850\"",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 3121000000
             }
           },
           {
@@ -184,7 +189,8 @@
             "line": 11,
             "name": "the user complete purchase with valid payment details",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 2750000000
             }
           },
           {
@@ -193,7 +199,8 @@
             "line": 12,
             "name": "the purchase should be successfully completed",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 63763000000
             }
           }
         ]
