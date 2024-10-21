@@ -1,17 +1,17 @@
 [
   {
     "keyword": "Feature",
-    "name": "Visit Details Page",
+    "name": "Techincal test tenantev",
     "line": 1,
-    "id": "visit-details-page",
+    "id": "techincal-test-tenantev",
     "tags": [],
     "uri": "e2eTestScenarios.feature",
     "elements": [
       {
-        "id": "visit-details-page;'asuccessful-purchase-of-a-property--'",
+        "id": "techincal-test-tenantev;a-successful-purchase-of-a-property-with-code-\"12871\"",
         "keyword": "Scenario",
         "line": 15,
-        "name": "'ASuccessful Purchase Of A Property  '",
+        "name": "A Successful Purchase Of A Property with code \"12871\"",
         "tags": [
           {
             "name": "@GM",
@@ -31,7 +31,7 @@
             "name": "the user logins with valid credentials",
             "result": {
               "status": "passed",
-              "duration": 17572000000
+              "duration": 7164000000
             }
           },
           {
@@ -41,17 +41,17 @@
             "name": "ther user submits application for multiple customers with \"12871\" property code",
             "result": {
               "status": "passed",
-              "duration": 39940000000
+              "duration": 25310000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
             "line": 7,
-            "name": "the user fills all of the mandatory fields",
+            "name": "the user fills all of the mandatory fields for code \"12871\"",
             "result": {
               "status": "passed",
-              "duration": 14284000000
+              "duration": 15278000000
             }
           },
           {
@@ -61,27 +61,27 @@
             "name": "there are \"2\" occupants under the age of 18",
             "result": {
               "status": "passed",
-              "duration": 1600000000
+              "duration": 1770000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
             "line": 9,
-            "name": "\"2\" vehicles will be kept at the property",
+            "name": "\"1\" vehicles will be kept at the property",
             "result": {
               "status": "passed",
-              "duration": 3140000000
+              "duration": 1636000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
             "line": 10,
-            "name": "\"3\" pets will be kept at the property",
+            "name": "\"2\" pets will be kept at the property for code \"12871\"",
             "result": {
               "status": "passed",
-              "duration": 5551000000
+              "duration": 3919000000
             }
           },
           {
@@ -91,7 +91,7 @@
             "name": "the user complete purchase with valid payment details",
             "result": {
               "status": "passed",
-              "duration": 2827000000
+              "duration": 2795000000
             }
           },
           {
@@ -101,7 +101,101 @@
             "name": "the purchase should be successfully completed",
             "result": {
               "status": "passed",
-              "duration": 71689000000
+              "duration": 64869000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "techincal-test-tenantev;a-successful-purchase-of-a-property-with-code-\"12850\"",
+        "keyword": "Scenario",
+        "line": 16,
+        "name": "A Successful Purchase Of A Property with code \"12850\"",
+        "tags": [
+          {
+            "name": "@GM",
+            "line": 2
+          },
+          {
+            "name": "@AA",
+            "line": 2
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "the user logins with valid credentials",
+            "result": {
+              "status": "passed",
+              "duration": 6978000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "ther user submits application for multiple customers with \"12850\" property code",
+            "result": {
+              "status": "passed",
+              "duration": 23502000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "the user fills all of the mandatory fields for code \"12850\"",
+            "result": {
+              "status": "failed",
+              "error_message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `[aria-label=\"Information Saved\"]`, but never found it.\n    at currentResidencePage.saveInformationTextValidation (cypress/e2e/PageObjects/current-residence-page.js:27:49)\n    at Context.eval (cypress/e2e/StepsDefinition/e2eCompleteApplicationSteps.js:127:23)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "there are \"0\" occupants under the age of 18",
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 9,
+            "name": "\"2\" vehicles will be kept at the property",
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 10,
+            "name": "\"3\" pets will be kept at the property for code \"12850\"",
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 11,
+            "name": "the user complete purchase with valid payment details",
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "the purchase should be successfully completed",
+            "result": {
+              "status": "skipped"
             }
           }
         ]

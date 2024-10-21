@@ -11,8 +11,7 @@
   "author": "Jeimmy Camacho Medina",
   "license": "MIT",
   "chromeWebSecurity": false,
-  "experimentalMemoryManagement":true,
-
+  "experimentalMemoryManagement": true,
   "dependencies": {
     "cypress-cucumber-preprocessor": "^4.3.1",
     "cypress-file-upload": "^5.0.8"

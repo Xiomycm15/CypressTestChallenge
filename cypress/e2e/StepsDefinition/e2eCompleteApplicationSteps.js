@@ -1,5 +1,6 @@
 import { Given, When, Then, And } from "cypress-cucumber-preprocessor/steps";
 import additionalInfoPage from "../PageObjects/additional-info-page";
+import additionalInfoOther from "../PageObjects/additional-info-page";
 import addressDetailsPage from "../PageObjects/address-details-page";
 import communityEnterCodePage from "../PageObjects/community-enter-code-page";
 import communityHomePage from "../PageObjects/community-home-page";
@@ -15,20 +16,32 @@ import successVideoPage from "../PageObjects/success-video-page";
 import profileSuccessDashboardPage from "../PageObjects/profile-success-dashboard-page";
 import signInRulesPage from "../PageObjects/signIn-rules-page";
 import signatureInAppPage from "../PageObjects/signature-in-app-page";
+import additionalDetailsOwnerOther from "../PageObjects/additional-details-owner-other";
 
+beforeEach(() => {
+  cy.clearAllCookies()
+  cy.clearAllSessionStorage()
+  cy.clearAllSessionStorage()
+});
 
+let item = 0;
 Given('the user logins with valid credentials', () => {
- 
+  
+  cy.fixture('users').then(user => {
     loginPage.clickOnCloseButton()
-    loginPage.typeUserEmail("xio.maracm1234@gmail.com")
-    loginPage.typeUserPassword("Paciencia2")
+    loginPage.typeUserEmail(user[item].email)
+    loginPage.typeUserPassword(user[item].password)
     loginPage.clickOnSiginButton()
     cy.wait(3000)
     communityHomePage.successLoginTextValidation()
+  });
+
 });
 
 
+
 When('ther user submits application for multiple customers with {string} property code', (code) => {
+  cy.fixture('users').then(user => {
   communityHomePage.clickOnStartNewApplicationSelectButton()
   communityEnterCodePage.enterPropertyCodeTextValidation()
   communityEnterCodePage.typePropertyCode(code)
@@ -39,60 +52,71 @@ When('ther user submits application for multiple customers with {string} propert
 
   })
 
+
   whoIsBuyingPage.clickOnMeAndSomeoneElseSelectButton()
   documentationAndConditionsPage.clickOnIHaveReadCheckbox()
   documentationAndConditionsPage.clickOnAgreeAndApplyButton()
-  cy.wait(30000)
+  cy.wait(20000)
   addressDetailsPage.clickOnConfirmApplicationYesButton()
+});
 
 });
 
 
-And('the user fills all of the mandatory fields', () => {
+And('the user fills all of the mandatory fields for code {string}', (code) => {
+  cy.fixture('users').then(user => {
 
   function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min) ) + min;
   }
 
-  addressDetailsPage.typePropertyAddress('921 West Ann Street Fort Myers')
-  addressDetailsPage.typeEnterUnitNumber('2')
-  addressDetailsPage.typeCity('Florida')
-  addressDetailsPage.typeZipCode('33912')
-  addressDetailsPage.clickOnDateCalendar('2024','OCT','22')
+  addressDetailsPage.typePropertyAddress(user[item].propertyAddress)
+  addressDetailsPage.typeEnterUnitNumber(user[item].propertyNumber)
+  addressDetailsPage.typeCity(user[item].propertyCity)
+  addressDetailsPage.typeZipCode(user[item].propertyZipCode)
+  addressDetailsPage.clickOnDateCalendar(user[item].moveInDateYear,user[item].moveInDateMonth,user[item].moveInDateDay)
 
 
-  addressDetailsPage.typePurchasePrice('400000')
+  addressDetailsPage.typePurchasePrice(user[item].purchasePrice)
 
-  addressDetailsPage.clickOnDoYouKnowOwnersYesCheckbox()
-  addressDetailsPage.typeOwnersFullName('Test')
-  addressDetailsPage.typeOwnersEmail('test@gmail.com')
-  addressDetailsPage.typeOwnersMobileNumber('1234567890')
+  if(code=='12871'){
+  additionalDetailsOwnerOther.clickOnDoYouKnowOwnersYesCheckbox()
+  additionalDetailsOwnerOther.typeOwnersFullName(user[item].ownerFullName)
+  additionalDetailsOwnerOther.typeOwnersEmail(user[item].ownerEmail)
+  additionalDetailsOwnerOther.typeOwnersMobileNumber(user[item].ownerMobile)
+
+  }
 
   addressDetailsPage.clickOnIsTheApplicantWorkingWithRealYesCheckbox()
-  addressDetailsPage.typeAgentName("Test")
-  addressDetailsPage.typeAgentEmail("test2@gmail.com")
-  addressDetailsPage.typeAgentMobileNumber('1214537890')
+  addressDetailsPage.typeAgentName(user[item].agentName)
+  addressDetailsPage.typeAgentEmail(user[item].agentEmail)
+  addressDetailsPage.typeAgentMobileNumber(user[item].agentMobile)
 
   addressDetailsPage.clickOnIAgreeAgentMayReceiveNotificationCheckbox()
   addressDetailsPage.clickOnSaveAndContinueButton()
   personalInfoPage.informationTextValidation()
 
-  personalInfoPage.typeApplicantFirstName('John')
-  personalInfoPage.typeApplicantLastName('Doe')
-  personalInfoPage.clickOnApplicantDateOfBirth('1988','OCT','17')
-  personalInfoPage.typeApplicantMobileNumber('1234567890')
+  personalInfoPage.typeApplicantFirstName(user[item].applicantFirstName)
+  personalInfoPage.typeApplicantLastName(user[item].applicantLastName)
+  personalInfoPage.clickOnApplicantDateOfBirth(user[item].applicantDateBirthYear,user[item].applicantDateBirthMonth,user[item].applicantDateBirthDay)
+  personalInfoPage.typeApplicantMobileNumber(user[item].applicantMobileNumber)
+  if(code=='12871'){
   let applicantSSN=getRndInteger(100000000, 999999999)
   personalInfoPage.typeApplicantSSN(applicantSSN)
   //personalInfoPage.clickOnIAgreeReceiveTextMessageCheckbox()
+  }
   personalInfoPage.selectcoApplicantRelationship()
 
-  personalInfoPage.typecoApplicantFirstName('Jane')
-  personalInfoPage.typecoApplicantLastName('Smith')
-  personalInfoPage.typecoApplicantEmail('test@gmail.com')
-  personalInfoPage.clickOncoApplicantDateOfBirth('1988','2','20')
-  personalInfoPage.typecoApplicantMobileNumber('1294567890')
+  personalInfoPage.typecoApplicantFirstName(user[item].coapplicantFirstName)
+  personalInfoPage.typecoApplicantLastName(user[item].coapplicantLastName)
+  personalInfoPage.typecoApplicantEmail(user[item].coapplicantEmail)
+  personalInfoPage.clickOncoApplicantDateOfBirth(user[item].coapplicantDateBirthYear,user[item].coapplicantDateBirthMonth,user[item].coapplicantDateBirthDay)
+  personalInfoPage.typecoApplicantMobileNumber(user[item].coapplicantMobileNumber)
+
+  if(code=='12871'){
   let coApplicantSSN=getRndInteger(100000000, 999999999)
   personalInfoPage.typecoApplicantSSN(coApplicantSSN)
+  }
 
   personalInfoPage.clickOnIsPrimaryOrSecondaryApplicantDutyMilitaryNoCheckBox()
   personalInfoPage.clickOnHasApplicantBeenArrestedNoCheckbox()
@@ -101,42 +125,51 @@ And('the user fills all of the mandatory fields', () => {
   personalInfoPage.clickOnSaveAndContinueButton()
 
   currentResidencePage.saveInformationTextValidation()
-  currentResidencePage.selectRentOrOwnDropdown('Own home')
-  currentResidencePage.typePropertyNumber('2')
-  currentResidencePage.typePropertyStreet('street test')
-  currentResidencePage.typePropertyCity('Florida')
-  currentResidencePage.typePropertyZipCode('33445')
-  currentResidencePage.selectPropertyStateDropdown('FLORIDA')
+  currentResidencePage.selectRentOrOwnDropdown(user[item].RentOrOwnDropdown)
+  currentResidencePage.typePropertyNumber(user[item].residenceNumber)
+  currentResidencePage.typePropertyStreet(user[item].residenceStreet)
+  currentResidencePage.typePropertyCity(user[item].residenceCity)
+  currentResidencePage.typePropertyZipCode(user[item].residenceZipCode)
+  currentResidencePage.selectPropertyStateDropdown(user[item].residenceStateDropdown)
   currentResidencePage.clickOnSameAsPrimaryApplicantCheckbox()
   currentResidencePage.clickOnSaveAndContinueButton()
 
   referencesPage.informationSavedTextValidation()
-  referencesPage.selectEmploymentTypeDropdown('Retired')
-  referencesPage.typeFirstReferenceFullName('Maria')
-  referencesPage.selectFirstReferenceRelationshipDropdown('Friend')
-  referencesPage.typeFirstReferenceMobilePhone('1234567890')
-  referencesPage.typeFirstReferenceEmail('test4@gmail.com')
-  referencesPage.typeSecondReferenceFullName('Victor')
-  referencesPage.selectSecondReferenceRelationshipDropdown('Co-Worker')
-  referencesPage.typeSecondReferenceMobilePhone('1123456789')
-  referencesPage.typeSecondReferenceEmail('test5@gmail.com')
+  referencesPage.selectEmploymentTypeDropdown(user[item].firstReferenceEmploymentType)
+  referencesPage.typeFirstReferenceFullName(user[item].firstReferenceFullName)
+  referencesPage.selectFirstReferenceRelationshipDropdown(user[item].firstReferenceRelationShip)
+  referencesPage.typeFirstReferenceMobilePhone(user[item].firstReferenceMobilePhone)
+  referencesPage.typeFirstReferenceEmail(user[item].firstReferenceEmail)
+  referencesPage.typeSecondReferenceFullName(user[item].secondReferenceFullName)
+  referencesPage.selectSecondReferenceRelationshipDropdown(user[item].secondReferenceRelationShip)
+  referencesPage.typeSecondReferenceMobilePhone(user[item].secondReferenceMobilePhone)
+  referencesPage.typeSecondReferenceEmail(user[item].secondReferenceEmail)
+  if(code=='12871'){
   referencesPage.clickOnApplicantIncomeVerificationNoCheckbox()
-  referencesPage.selectRoommateEmploymentTypeDropdown('Homemaker')
+  }
+  referencesPage.selectRoommateEmploymentTypeDropdown(user[item].roommateEmploymentType)
   referencesPage.clickOnRoommateSameAsPrimaryApplicant()
+  if(code=='12871'){
   referencesPage.clickOnRoommateIncomeVerificationNoCheckbox()
-  referencesPage.typeEmergencyContactFullName('Martha')
-  referencesPage.typeEmergencyContactRelationship('Mother')
-  referencesPage.typeEmergencyContactCellphone('1234467890')
-  referencesPage.typeEmergencyContactEmail('test5@gmail.com')
+  }
+  referencesPage.typeEmergencyContactFullName(user[item].emergencyContactFullName)
+  referencesPage.typeEmergencyContactRelationship(user[item].emergencyContactRelationship)
+  referencesPage.typeEmergencyContactCellphone(user[item].emergencyContactCellphone)
+  referencesPage.typeEmergencyContactEmail(user[item].emergencyContactEmail)
   referencesPage.clickOnSaveAndContinueButton()
-
+});
 });
 
 
 And('there are {string} occupants under the age of 18', (childrenQuantity) => {
+  cy.fixture('users').then(user => {
 
   childrenQuantity=parseInt(childrenQuantity)
-  
+  let childrenInfoCode1= [
+    [user[item].firstChildrenName, user[item].firstChildrenRelationship,user[item].firstChildrenAge],
+    [user[item].secondChildrenName, user[item].secondChildrenRelationship,user[item].secondChildrenAge],
+  ]
+
   additionalInfoPage.informationSavedTextValidation()
   if(childrenQuantity==0){
     additionalInfoPage.clickOnOtherOccupantsUnder18NoCheckbox()
@@ -146,17 +179,31 @@ And('there are {string} occupants under the age of 18', (childrenQuantity) => {
       if(i!=0){
         additionalInfoPage.clickOnAddAnotherOccupantButton()
       }     
-      additionalInfoPage.typeChildrenName(i,'Maria')
-      additionalInfoPage.typeChildrenRelationship(i,'friend')
-      additionalInfoPage.typeFirstChildrenAge(i,'3')
+      additionalInfoPage.typeChildrenName(i,childrenInfoCode1[i][0])
+      additionalInfoPage.typeChildrenRelationship(i,childrenInfoCode1[i][1])
+      additionalInfoPage.typeFirstChildrenAge(i,childrenInfoCode1[i][2])
 
     }
 
   }
+});
 
 });
 
 And('{string} vehicles will be kept at the property', (vehicleQuantity) => {
+  cy.fixture('users').then(user => {
+  let vehicleInfo= []
+
+  if(item==0){
+  vehicleInfo= [
+    [user[item].firstVehicleMake, user[item].firstVehicleModel,user[item].firstVehicleColor, user[item].firstVehicleYear,user[item].firstVehicleTag, user[item].firstVehicleState, user[item].firstVehicleInsurance,user[item].firstVehicleElectric],
+    [user[item].secondVehicleMake, user[item].secondVehicleModel,user[item].secondVehicleColor, user[item].secondVehicleYear,user[item].secondVehicleTag, user[item].secondVehicleState, user[item].secondVehicleInsurance,user[item].secondVehicleElectric],
+  ]
+}else if(item==1){
+  vehicleInfo= [
+    [user[item].firstVehicleMake, user[item].firstVehicleModel,user[item].firstVehicleColor, user[item].firstVehicleYear,user[item].firstVehicleTag, user[item].firstVehicleState, user[item].firstVehicleInsurance,user[item].firstVehicleElectric],
+  ]
+}
 
   vehicleQuantity=parseInt(vehicleQuantity)
     
@@ -168,23 +215,46 @@ And('{string} vehicles will be kept at the property', (vehicleQuantity) => {
       if(i!=0){
         additionalInfoPage.clickOnAddAnotherVehicleButton()
       }     
-      additionalInfoPage.typeVehicleMakeInput(i,'test')
-      additionalInfoPage.typeVehicleModelInput(i,'test')
-      additionalInfoPage.typeVehicleColorInput(i,'test')
-      additionalInfoPage.typeVehicleYearInput(i,'2010')
-      additionalInfoPage.typeVehicleTagInput(i,'test')
-      additionalInfoPage.selectVehicleStateRegisteredDropdown(i,'FLORIDA')
-      additionalInfoPage.typeVehicleInsuranceBy(i,'test')
-      additionalInfoPage.clickOnVehicleElectricYesCheckbox(i)
+      additionalInfoPage.typeVehicleMakeInput(i,vehicleInfo[i][0])
+      additionalInfoPage.typeVehicleModelInput(i,vehicleInfo[i][1])
+      additionalInfoPage.typeVehicleColorInput(i,vehicleInfo[i][2])
+      additionalInfoPage.typeVehicleYearInput(i,vehicleInfo[i][3])
+      additionalInfoPage.typeVehicleTagInput(i,vehicleInfo[i][4])
+      additionalInfoPage.selectVehicleStateRegisteredDropdown(i,vehicleInfo[i][5])
+      additionalInfoPage.typeVehicleInsuranceBy(i,vehicleInfo[i][6])
+      if(user[item].firstVehicleElectric=='YES'){      
+        additionalInfoPage.clickOnVehicleElectricYesCheckbox(i)
+      }else{
+        additionalInfoPage.clickOnVehicleElectricNoCheckbox(i)
+      }
+
 
     }
 
   }
 });
+});
 
-And('{string} pets will be kept at the property', (petsQuantity) => {
+And('{string} pets will be kept at the property for code {string}', (petsQuantity,code) => {
+  cy.fixture('users').then(user => {
+
   petsQuantity=parseInt(petsQuantity)
-    
+  
+  let petInfo= []
+  if(item==0){
+   petInfo= [
+    [user[item].firstPetName, user[item].firstPetType,user[item].firstPetBreed, user[item].firstPetAge,user[item].firstPetWeight, user[item].firstPetSex, user[item].firstPetDescription],
+    [user[item].secondPetName, user[item].secondPetType,user[item].secondPetBreed, user[item].secondPetAge,user[item].secondPetWeight, user[item].secondPetSex, user[item].secondPetDescription],  
+    [user[item].thirdPetName, user[item].thirdPetType,user[item].thirdPetBreed, user[item].thirdPetAge,user[item].thirdPetWeight, user[item].thirdPetSex, user[item].thirdPetDescription],  
+  ]
+}else if(item==1){
+  petInfo= [
+    [user[item].firstPetName, user[item].firstPetType,user[item].firstPetBreed, user[item].firstPetAge,user[item].firstPetWeight, user[item].firstPetSex, user[item].firstPetDescription],
+    [user[item].secondPetName, user[item].secondPetType,user[item].secondPetBreed, user[item].secondPetAge,user[item].secondPetWeight, user[item].secondPetSex, user[item].secondPetDescription],  
+  ]
+}
+
+
   if(petsQuantity==0){
     additionalInfoPage.clickOnWillThereBeAnyPetsNoCheckbox()
 
@@ -194,14 +264,17 @@ And('{string} pets will be kept at the property', (petsQuantity) => {
       if(i!=0){
         additionalInfoPage.clickOnAddAnotherPetButton()
       }   
-      additionalInfoPage.clickOnIsThisPetEmotionalSupportYesCheckbox(i) 
-      additionalInfoPage.typePetNameInput(i,'test')
-      additionalInfoPage.selectPetTypeDropdown(i,'Dog')
-      additionalInfoPage.typePetBreedInput(i,'test')
-      additionalInfoPage.typePetAgeInput(i,'10')
-      additionalInfoPage.typePetWeightInput(i,'10')
-      additionalInfoPage.selectPetSexDropdown(i,'Male')
-      additionalInfoPage.typePetDescriptionTextInput(i,'test')
+
+      if(code=='12871'){
+      additionalInfoOther.clickOnIsThisPetEmotionalSupportYesCheckbox(i) 
+      }
+      additionalInfoPage.typePetNameInput(i,petInfo[i][0])
+      additionalInfoPage.selectPetTypeDropdown(i,petInfo[i][1])
+      additionalInfoPage.typePetBreedInput(i,petInfo[i][2])
+      additionalInfoPage.typePetAgeInput(i,petInfo[i][3])
+      additionalInfoPage.typePetWeightInput(i,petInfo[i][4])
+      additionalInfoPage.selectPetSexDropdown(i,petInfo[i][5])
+      additionalInfoPage.typePetDescriptionTextInput(i,petInfo[i][6])
 
     }
 
@@ -210,11 +283,12 @@ And('{string} pets will be kept at the property', (petsQuantity) => {
   additionalInfoPage.clickOnSaveAndContinue()
   reviewInfoPage.informationSavedTextValidation()
   reviewInfoPage.clickOnSaveAndContinueButton()
-
+});
 });
 
 
 And('the user complete purchase with valid payment details', () => {
+  cy.fixture('users').then(user => {
 
   paymentDetailsPage.clickOnAddPlatinumServiceNowButton()
   paymentDetailsPage.typeCardNameInput('test')
@@ -227,10 +301,12 @@ And('the user complete purchase with valid payment details', () => {
   paymentDetailsPage.clickOnSelectSignatureButton()
   paymentDetailsPage.clickOnIAgreeAndAuthorizeChargeCheckbox()
   paymentDetailsPage.clickOnPayButton()
-
+});
 });
 
 Then('the purchase should be successfully completed', () => {
+  cy.fixture('users').then(user => {
+
     cy.wait(4000)
     successVideoPage.successPaymentTextValidation()
     cy.wait(4000)
@@ -255,5 +331,12 @@ Then('the purchase should be successfully completed', () => {
     signatureInAppPage.clickOnClickToSignInButton()
     signatureInAppPage.clickOnFinishButton()
     signatureInAppPage.signatureProcessCompleteTextValidation()
+  });
+  })
 
-});
+
+  afterEach(() => {
+    item=item+1
+  });
+
+

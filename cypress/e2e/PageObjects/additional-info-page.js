@@ -8,17 +8,12 @@ class additionalInfoPage{
     elements = {
 
         informationSavedText: () =>  cy.get('[aria-label="Information Saved"]'), 
-
         otherOccupantsUnder18NoCheckbox: () =>  cy.get('[data-cy="underAgeInfo"] [data-cy="no"]'),
         otherOccupantsUnder18YesCheckbox: () =>  cy.get('[data-cy="underAgeInfo"] [data-cy="yes"]'),
         childrenNameInput: () =>  cy.get('#occupantName-'+this.countChildren),
         childrenRelationshipInput: () =>  cy.get('#occupantRelationship-'+this.countChildren),
         childrenAgeInput: () =>  cy.get('#occupantAge-'+this.countChildren),
-
-        
         addAnotherOccupantButton: () =>  cy.get('button').contains('Add another Occupant'),
-        
-
         vehiclesNoCheckbox: () =>  cy.get('[data-cy="vehicleInfo"] [data-cy="no"]'),
         vehiclesYesCheckbox: () =>  cy.get('[data-cy="vehicleInfo"] [data-cy="yes"]'),
         vehicleMakeInput: () =>  cy.get('#vehicleMake-'+this.countVehicles),
@@ -30,6 +25,7 @@ class additionalInfoPage{
         valueDropdown: () =>  cy.get('.mat-option-text'),
         vehicleInsuranceBy: () =>  cy.get('#vehicleInsuredBy-'+this.countVehicles),
         vehicleElectricYesCheckbox: () =>  cy.get('[data-cy="vehicleInfo"] .vehicle-iselectric [data-cy="yes"]').eq(this.countVehicles),
+        vehicleElectricNoCheckbox: () =>  cy.get('[data-cy="vehicleInfo"] .vehicle-iselectric [data-cy="no"]').eq(this.countVehicles),
 
         addAnotherVehicleButton: () =>  cy.get('button').contains('Add another Vehicle'),
 
@@ -46,7 +42,7 @@ class additionalInfoPage{
         petSexDropdown : () =>  cy.get('tev-pet-form mat-select').eq(this.countPets),
         petDescriptionTextInput: () =>  cy.get('#petDescription-'+this.countPets),
 
-        addAnotherPetButton: () =>  cy.get('button').contains('Add another Pet'),
+        addAnotherPetButton: () =>  cy.get('.pet-info button'),
 
         
         saveAndContinueButton: () =>  cy.get('.confirm-button'),
@@ -131,6 +127,11 @@ class additionalInfoPage{
     clickOnVehicleElectricYesCheckbox(vehicleNo){
         this.countVehicles=vehicleNo
         this.elements.vehicleElectricYesCheckbox().click({force:true})
+    }
+
+    clickOnVehicleElectricNoCheckbox(vehicleNo){
+        this.countVehicles=vehicleNo
+        this.elements.vehicleElectricNoCheckbox().click({force:true})
     }
 
     clickOnAddAnotherVehicleButton(){

@@ -97,7 +97,7 @@ class personalInfoPage{
     clickOncoApplicantDateOfBirth(year,month,day){
         this.elements.coApplicantDateOfBirthInput().click({force:true})
         this.elements.coApplicantDateOfBirthInput().click({force:true})
-        this.elements.coApplicantDateOfBirthInput().type(month+'/'+day+'/'+year)
+        this.elements.coApplicantDateOfBirthInput().clear().type(month+'/'+day+'/'+year)
         this.elements.coApplicantDateOfBirthInput().click({force:true})
     }
     

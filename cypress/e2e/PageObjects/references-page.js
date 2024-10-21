@@ -8,14 +8,11 @@ class referencesPage{
 
         firstReferenceFullNameInput: () =>  cy.get('#employmentPersonalReferenceName-0'), 
         firstReferenceRelationshipDropdown: () =>  cy.get('[data-cy="relationshipWithReference"]').eq(0), 
-
-        //firstReferenceCountryDropdown: () =>  cy.get(''), 
         firstReferenceCellPhoneInput: () =>  cy.get('#employmentPersonalReferenceCellPhone-0'), 
         firstReferenceEmailInput: () =>  cy.get('#employmentPersonalReferenceEmail-0'), 
         
         secondReferenceFullNameInput: () =>  cy.get('#employmentPersonalReferenceName-1'), 
         secondReferenceRelationshipDropdown: () =>  cy.get('[data-cy="relationshipWithReference"]').eq(1), 
-        //secondReferenceCountryDropdown: () =>  cy.get(''), 
         secondReferenceCellPhoneInput: () =>  cy.get('#employmentPersonalReferenceCellPhone-1'), 
         secondReferenceEmailInput: () =>  cy.get('#employmentPersonalReferenceEmail-1'), 
         

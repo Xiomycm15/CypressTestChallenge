@@ -3165,7 +3165,7 @@ ms@^2.1.1, ms@^2.1.3:
 
 multiple-cucumber-html-reporter@^3.8.0:
   version "3.8.0"
-  resolved "https://registry.npmjs.org/multiple-cucumber-html-reporter/-/multiple-cucumber-html-reporter-3.8.0.tgz"
+  resolved "https://registry.yarnpkg.com/multiple-cucumber-html-reporter/-/multiple-cucumber-html-reporter-3.8.0.tgz#46c4a4404936c803cd6766662dcb5c7db1d82494"
   integrity sha512-OLnTQ3qvLRD6WfNw1dbzbawqnYuq4T6z1Rqgdftmp/ediE4rnTtPV4uqvNe+t2W7WR4VmMNkSiHVhLIe6IwX1A==
   dependencies:
     find "^0.3.0"
