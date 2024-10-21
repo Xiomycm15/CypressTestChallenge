@@ -17,14 +17,13 @@ import profileSuccessDashboardPage from "../PageObjects/profile-success-dashboar
 import signInRulesPage from "../PageObjects/signIn-rules-page";
 import signatureInAppPage from "../PageObjects/signature-in-app-page";
 import additionalDetailsOwnerOther from "../PageObjects/additional-details-owner-other";
+let item = 0;
 
 beforeEach(() => {
-  cy.clearAllCookies()
-  cy.clearAllSessionStorage()
-  cy.clearAllSessionStorage()
+
 });
 
-let item = 0;
+
 Given('the user logins with valid credentials', () => {
   
   cy.fixture('users').then(user => {
@@ -32,7 +31,6 @@ Given('the user logins with valid credentials', () => {
     loginPage.typeUserEmail(user[item].email)
     loginPage.typeUserPassword(user[item].password)
     loginPage.clickOnSiginButton()
-    cy.wait(3000)
     communityHomePage.successLoginTextValidation()
   });
 
@@ -42,6 +40,8 @@ Given('the user logins with valid credentials', () => {
 
 When('ther user submits application for multiple customers with {string} property code', (code) => {
   cy.fixture('users').then(user => {
+    cy.wait(50000)
+
   communityHomePage.clickOnStartNewApplicationSelectButton()
   communityEnterCodePage.enterPropertyCodeTextValidation()
   communityEnterCodePage.typePropertyCode(code)
@@ -56,7 +56,7 @@ When('ther user submits application for multiple customers with {string} propert
   whoIsBuyingPage.clickOnMeAndSomeoneElseSelectButton()
   documentationAndConditionsPage.clickOnIHaveReadCheckbox()
   documentationAndConditionsPage.clickOnAgreeAndApplyButton()
-  cy.wait(20000)
+  cy.wait(80000)
   addressDetailsPage.clickOnConfirmApplicationYesButton()
 });
 
@@ -163,7 +163,7 @@ And('the user fills all of the mandatory fields for code {string}', (code) => {
 
 And('there are {string} occupants under the age of 18', (childrenQuantity) => {
   cy.fixture('users').then(user => {
-
+  cy.log(item)
   childrenQuantity=parseInt(childrenQuantity)
   let childrenInfoCode1= [
     [user[item].firstChildrenName, user[item].firstChildrenRelationship,user[item].firstChildrenAge],
@@ -177,7 +177,7 @@ And('there are {string} occupants under the age of 18', (childrenQuantity) => {
     additionalInfoPage.clickOnOtherOccupantsUnder18YesCheckbox()
     for (var i = 0; i <childrenQuantity ; i++) {
       if(i!=0){
-        additionalInfoPage.clickOnAddAnotherOccupantButton()
+        additionalInfoPage.clickOnAddAnotherOccupantButton(i)
       }     
       additionalInfoPage.typeChildrenName(i,childrenInfoCode1[i][0])
       additionalInfoPage.typeChildrenRelationship(i,childrenInfoCode1[i][1])
@@ -192,10 +192,12 @@ And('there are {string} occupants under the age of 18', (childrenQuantity) => {
 
 And('{string} vehicles will be kept at the property', (vehicleQuantity) => {
   cy.fixture('users').then(user => {
+
+  cy.log(item)
   let vehicleInfo= []
 
   if(item==0){
-  vehicleInfo= [
+    vehicleInfo= [
     [user[item].firstVehicleMake, user[item].firstVehicleModel,user[item].firstVehicleColor, user[item].firstVehicleYear,user[item].firstVehicleTag, user[item].firstVehicleState, user[item].firstVehicleInsurance,user[item].firstVehicleElectric],
     [user[item].secondVehicleMake, user[item].secondVehicleModel,user[item].secondVehicleColor, user[item].secondVehicleYear,user[item].secondVehicleTag, user[item].secondVehicleState, user[item].secondVehicleInsurance,user[item].secondVehicleElectric],
   ]
@@ -239,7 +241,7 @@ And('{string} pets will be kept at the property for code {string}', (petsQuantit
   cy.fixture('users').then(user => {
 
   petsQuantity=parseInt(petsQuantity)
-  
+
   let petInfo= []
   if(item==0){
    petInfo= [
@@ -261,7 +263,7 @@ And('{string} pets will be kept at the property for code {string}', (petsQuantit
   }else if(petsQuantity>0){
     additionalInfoPage.clickOnWillThereBeAnyPetsYesCheckbox()
     for (var i = 0; i <petsQuantity ; i++) {
-      if(i!=0){
+      if(i!=0 && i<3){
         additionalInfoPage.clickOnAddAnotherPetButton()
       }   
 
@@ -336,7 +338,7 @@ Then('the purchase should be successfully completed', () => {
 
 
   afterEach(() => {
-    item=item+1
+    item=+1
   });
 
 

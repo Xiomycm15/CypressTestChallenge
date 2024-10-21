@@ -33,13 +33,11 @@ beforeEach(()=> {
   
   })
     cy.intercept('https://tenantev-qa.tev2.co/').as('todos')
+
     cy.visit('https://tenantev-qa.tev2.co/',{
-      headers:{
-      }
+
     });
     cy.wait('@todos')
     // page is loaded, continue with the test
   
   })
-
-  

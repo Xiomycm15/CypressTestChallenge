@@ -12,6 +12,6 @@ Feature: Techincal test tenantev
     Then the purchase should be successfully completed
     Examples:
     | propertyCode | childrenQuantity | vehicleQuantity | petsQuantity |
-    | 12871        | 2                | 1               |        2     |
-    | 12850        | 0                | 2               |        3     |
+    | 12871        | 2                | 2               |        3     |
+    | 12850        | 0                | 1               |        2     |
 

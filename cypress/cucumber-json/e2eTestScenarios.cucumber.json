@@ -31,7 +31,7 @@
             "name": "the user logins with valid credentials",
             "result": {
               "status": "passed",
-              "duration": 7164000000
+              "duration": 14642000000
             }
           },
           {
@@ -41,7 +41,7 @@
             "name": "ther user submits application for multiple customers with \"12871\" property code",
             "result": {
               "status": "passed",
-              "duration": 25310000000
+              "duration": 208893000000
             }
           },
           {
@@ -51,7 +51,7 @@
             "name": "the user fills all of the mandatory fields for code \"12871\"",
             "result": {
               "status": "passed",
-              "duration": 15278000000
+              "duration": 15276000000
             }
           },
           {
@@ -61,27 +61,28 @@
             "name": "there are \"2\" occupants under the age of 18",
             "result": {
               "status": "passed",
-              "duration": 1770000000
+              "duration": 1717000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
             "line": 9,
-            "name": "\"1\" vehicles will be kept at the property",
+            "name": "\"2\" vehicles will be kept at the property",
             "result": {
               "status": "passed",
-              "duration": 1636000000
+              "duration": 3315000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
             "line": 10,
-            "name": "\"2\" pets will be kept at the property for code \"12871\"",
+            "name": "\"3\" pets will be kept at the property for code \"12871\"",
             "result": {
-              "status": "passed",
-              "duration": 3919000000
+              "status": "failed",
+              "duration": 2945000000,
+              "error_message": "CypressError: `cy.click()` can only be called on a single element. Your subject contained 2 elements. Pass `{ multiple: true }` if you want to serially click each element.\n    at mouseAction (https://tenantev-qa.tev2.co/__cypress/runner/cypress_runner.js:141803:76)\n    at Context.click (https://tenantev-qa.tev2.co/__cypress/runner/cypress_runner.js:141967:14)\n    at wrapped (https://tenantev-qa.tev2.co/__cypress/runner/cypress_runner.js:160816:19)\nFrom Your Spec Code:\n    at additionalInfoPage.clickOnAddAnotherPetButton (cypress/e2e/PageObjects/additional-info-page.js:199:44)\n    at Context.eval (cypress/e2e/StepsDefinition/e2eCompleteApplicationSteps.js:267:27)"
             }
           },
           {
@@ -90,8 +91,7 @@
             "line": 11,
             "name": "the user complete purchase with valid payment details",
             "result": {
-              "status": "passed",
-              "duration": 2795000000
+              "status": "skipped"
             }
           },
           {
@@ -100,8 +100,7 @@
             "line": 12,
             "name": "the purchase should be successfully completed",
             "result": {
-              "status": "passed",
-              "duration": 64869000000
+              "status": "skipped"
             }
           }
         ]
@@ -130,7 +129,7 @@
             "name": "the user logins with valid credentials",
             "result": {
               "status": "passed",
-              "duration": 6978000000
+              "duration": 117095000000
             }
           },
           {
@@ -139,8 +138,8 @@
             "line": 6,
             "name": "ther user submits application for multiple customers with \"12850\" property code",
             "result": {
-              "status": "passed",
-              "duration": 23502000000
+              "status": "failed",
+              "error_message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.confirm-button`, but never found it.\n    at Object.confirmApplicationYesButton (cypress/e2e/PageObjects/address-details-page.js:6:47)\n    at addressDetailsPage.clickOnConfirmApplicationYesButton (cypress/e2e/PageObjects/address-details-page.js:30:22)\n    at Context.eval (cypress/e2e/StepsDefinition/e2eCompleteApplicationSteps.js:60:21)"
             }
           },
           {
@@ -149,8 +148,7 @@
             "line": 7,
             "name": "the user fills all of the mandatory fields for code \"12850\"",
             "result": {
-              "status": "failed",
-              "error_message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `[aria-label=\"Information Saved\"]`, but never found it.\n    at currentResidencePage.saveInformationTextValidation (cypress/e2e/PageObjects/current-residence-page.js:27:49)\n    at Context.eval (cypress/e2e/StepsDefinition/e2eCompleteApplicationSteps.js:127:23)"
+              "status": "skipped"
             }
           },
           {
@@ -166,7 +164,7 @@
             "arguments": [],
             "keyword": "And ",
             "line": 9,
-            "name": "\"2\" vehicles will be kept at the property",
+            "name": "\"1\" vehicles will be kept at the property",
             "result": {
               "status": "skipped"
             }
@@ -175,7 +173,7 @@
             "arguments": [],
             "keyword": "And ",
             "line": 10,
-            "name": "\"3\" pets will be kept at the property for code \"12850\"",
+            "name": "\"2\" pets will be kept at the property for code \"12850\"",
             "result": {
               "status": "skipped"
             }

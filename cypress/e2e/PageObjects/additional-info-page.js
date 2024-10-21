@@ -42,7 +42,7 @@ class additionalInfoPage{
         petSexDropdown : () =>  cy.get('tev-pet-form mat-select').eq(this.countPets),
         petDescriptionTextInput: () =>  cy.get('#petDescription-'+this.countPets),
 
-        addAnotherPetButton: () =>  cy.get('.pet-info button'),
+        addAnotherPetButton: () =>  cy.get('.pet-info button').eq(this.countPets),
 
         
         saveAndContinueButton: () =>  cy.get('.confirm-button'),
@@ -195,7 +195,8 @@ class additionalInfoPage{
         this.elements.petDescriptionTextInput().type(petDescription);
     }
 
-    clickOnAddAnotherPetButton(){
+    clickOnAddAnotherPetButton(petNo){
+        this.countPets=petNo
         this.elements.addAnotherPetButton().click({force:true})
     }
 

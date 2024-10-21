@@ -3,8 +3,10 @@ const cucumber = require('cypress-cucumber-preprocessor').default
 
 module.exports = defineConfig({
   numTestsKeptInMemory: 0,
-  chromeWebSecurity: false,
+
   e2e: {
+    chromeWebSecurity: false,
+    pageLoadTimeout:900000,
     setupNodeEvents(on, config) {
       // implement node event listeners here
       on('file:preprocessor', cucumber())
